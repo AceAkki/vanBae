@@ -1,3 +1,9 @@
+:root {
+  --clr-simple:#fe8132;
+  --clr-luxury:#161312;
+  --clr-rugged:#0e5049;
+}
+
 * {
     box-sizing: border-box;
 }
