@@ -100,23 +100,26 @@
 /* Van section */
 
 .van-section {
-  margin: 1rem;
+  margin: 2rem;
 }
 
 .section-title {
-  font-size: 1.3rem;
+  font-size: 2.3rem;
   font-weight: 700;
+  
 }
 
 .vans-wrap {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  margin: 1rem 0;
 }
 
 .van-card {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .van-card a {
@@ -150,106 +153,61 @@
 }
 
 .type-label {
-    color: #fff;
-    font-size: 0.9rem;
-    text-transform: capitalize;
-    padding: 0.5rem;
-    border-radius: 5px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
 }
 
 .type-label.simple {
-    background: var(--clr-simple);
+  background: var(--clr-simple);
 }
 
 .type-label.luxury {
-    background: var(--clr-luxury);
+  background: var(--clr-luxury);
 }
 
 .type-label.rugged {
-    background: var(--clr-rugged);
+  background: var(--clr-rugged);
 }
 
 .light-txt {
-    font-size: 0.7rem;
+  font-size: 0.7rem;
 }
 
-/*** VAN PAGES ***/
-.van-list-container {
-    padding-inline: 23px
+.van-info-section {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
 }
 
-.van-list {
+.van-info-section img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.van-details-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 1080px) {
+  .vans-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    gap: 34px;
-    margin-top: 57px;
-}
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .van-info-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 
-.van-tile a {
-    color: #161616;
-    text-decoration: none;    
-}
-
-.van-tile img {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-.van-list-container button {
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.van-type {
-    height: 34px;
-    padding: 6px 26px;
-    font-style: normal;
-    font-weight: 500;
-    border: none;
-    border-radius: 5px;
-    background-color: #FFEAD0;
-    color: #4D4D4D;
-    transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.van-type:hover {
-    color: #FFEAD0;
-}
-
-.van-type:focus {
-    outline: none;
-}
-
-.van-type.selected {
-    color: #FFEAD0;
-}
-
-.van-type.simple:hover, .van-type.simple.selected {
-    background-color: #E17654;
-}
-
-.van-type.rugged:hover, .van-type.rugged.selected {
-    background-color: #115E59;
-}
-
-.van-type.luxury:hover, .van-type.luxury.selected {
-    background-color: #161616;
-}
-
-.van-type.clear-filters {
-    margin-left: -20px;
-    height: 34px;
-    padding: 6px 26px;
-    font-style: normal;
-    font-weight: 500;
-    border: none;
-    border-radius: 5px;
-    text-decoration: underline;
-    background-color: transparent;
-    color: #4D4D4D;
-}
-
-i[class*='van-type-'] {
-    padding: 7px 14px;
+  .van-info-section .type-label {
+    align-self: flex-start;
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+  }
 }

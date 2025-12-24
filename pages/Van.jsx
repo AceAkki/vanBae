@@ -9,13 +9,36 @@ export default function Van() {
       const data = await fetch(`/api/vans/${currentParam.id}`);
       const res = await data.json();
       setVanData(res.vans);
+      console.log(res.vans)
     }
     fetchData();
   }, [currentParam.id]);
 
   return (
     <>
-      <h1>{useParams().id}</h1>
+     {
+      vanData !== null ?
+        (
+          <main className="van-info-section">
+            <div>
+              <img src={vanData.imageUrl} alt="" />
+            </div>
+            <div className="van-details-wrap">
+                <p className={`type-label ${vanData.type}`}>{vanData.type}</p>
+              <h1>
+                {vanData.name}
+              </h1>
+              <h2>
+                {`$${vanData.price}`}
+              </h2>
+              <p>
+                {vanData.description}
+              </p>
+            </div>
+          </main>
+        )
+        : null
+     }
     </>
   );
 }
