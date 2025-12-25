@@ -30,6 +30,10 @@ body {
   position: relative;
 }
 
+img {
+  width: 100%;
+}
+
 header {
     height: 110px;
     display: flex;
@@ -70,6 +74,11 @@ header a.active-link {
     color: #161616;
     text-decoration: underline;
 }
+
+section {
+  min-height: 100vh;
+}
+
 
 footer {
   position:absolute;

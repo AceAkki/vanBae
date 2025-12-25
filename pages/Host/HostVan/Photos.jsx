@@ -1,12 +1,9 @@
 import { useOutletContext } from "react-router-dom"
-export default function Price() {
+export default function Photos() {
     const data = useOutletContext()
     return (
         <>
-        <p>
-            ${data.price}/day
-
-        </p>
+        <img src={data.imageUrl}  className="host-van-img"/>
        
         
         </>

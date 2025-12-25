@@ -1,39 +1,27 @@
-export default function Details(props) {
-    return (
-        <>
-        <p>
-            <strong>
-                Name : 
-            </strong>
+import { useOutletContext } from "react-router-dom";
 
-            {props.name}
+export default function Details() {
+  const data = useOutletContext();
+  return (
+    <div className="host-van-dtls">
+      <p>
+        <strong>Name :</strong>
 
-        </p>
-        <p>
-            <strong>
-                Category : 
-            </strong>
+        <span>{data.name}</span>
+      </p>
+      <p>
+        <strong>Category :</strong>
 
-            {props.type}
-
-        </p>
-        <p>
-            <strong>
-                Description : 
-            </strong>
-
-            {props.description}
-
-        </p>
-        <p>
-            <strong>
-                Visibility : 
-            </strong>
-
-            Public
-
-        </p>
-        
-        </>
-    )
+        <span style={{textTransform:"capitalize"}}>{data.type}</span>
+      </p>
+      <p>
+        <strong>Description :</strong>
+        <span>{data.description}</span>
+      </p>
+      <p>
+        <strong>Visibility :</strong>
+        <span>Public</span>
+      </p>
+    </div>
+  );
 }

@@ -6,7 +6,7 @@ export default function HostLayout() {
   return (
     <section className="host-sec">
       <div className="host-nav">
-        <NavLink className={({isActive})=> highlightActive(isActive)} end to="">Dashboard</NavLink>
+        <NavLink className={({isActive})=> highlightActive(isActive)} end to=".">Dashboard</NavLink>
         <NavLink className={({isActive})=> highlightActive(isActive)} to="income">Income</NavLink>
         <NavLink className={({isActive})=> highlightActive(isActive)} to="vans">Vans</NavLink>
         <NavLink className={({isActive})=> highlightActive(isActive)} to="reviews">Reviews</NavLink>

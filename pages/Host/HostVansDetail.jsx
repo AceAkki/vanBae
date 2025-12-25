@@ -12,8 +12,8 @@ export default function HostVansDetail(){
     }
 
     function RenderVanData (props) {
-        let data = props.data[0];
-        return <section className="van-main-dtl">
+        let data = props.data;
+        return <div className="van-main-dtl">
                 <div className="van-dtl-overview">
                     <div className="van-dtl-img">
                             <img src={data.imageUrl} alt="" />
@@ -25,18 +25,25 @@ export default function HostVansDetail(){
                     </div>
                 </div>
 
-                <div className="van-dtl-nav">
-                    <NavLink to="" >Details</NavLink>
-                    <NavLink to='price'>Price</NavLink>
+
+                <div className='van-more-dtl'>
+                    <div className="van-dtl-nav">
+                        <NavLink end className={({isActive}) => isActive ? "dtl-nav-active" : null} to="." >Details</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dtl-nav-active" : null} to='price'>Pricing</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dtl-nav-active" : null} to='photos'>Photos</NavLink>
+                    </div>
+
+
+                    <div className='van-dtl-display'>
+                        <Outlet context={data}/>
+                    </div>
+
                 </div>
-
-
-                <Outlet />
 
 
                 
 
-            </section>
+            </div>
     }
 
 
@@ -46,8 +53,15 @@ export default function HostVansDetail(){
     
     return (
         <section className="van-dtl-section">
-            <Link to="../vans">
-                Back to All Vans
+            <Link 
+                // to="../vans"
+
+                //another method
+                to=".."
+                relative='path'
+                className='van-dtl-back'
+                >
+                &larr; Back to All Vans
             </Link>
 
             {
