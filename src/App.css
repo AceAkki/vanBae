@@ -100,7 +100,8 @@
 /* Van section */
 
 .van-section {
-  margin: 2rem;
+  margin: 2rem 2rem 0;
+  padding: 0 0 5rem;
 }
 
 .section-title {

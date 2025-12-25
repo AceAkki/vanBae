@@ -9,7 +9,7 @@ export default function Van() {
       const data = await fetch(`/api/vans/${currentParam.id}`);
       const res = await data.json();
       setVanData(res.vans);
-      console.log(res.vans)
+      //console.log(res.vans)
     }
     fetchData();
   }, [currentParam.id]);
