@@ -90,3 +90,7 @@ footer {
   color: #FFF7ED;
   text-align: center;
 }
+
+.hide {
+  display: none;
+}
