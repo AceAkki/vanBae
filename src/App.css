@@ -207,7 +207,7 @@
   flex-wrap: wrap;
 }
 
-.filter-wrap button {
+.filter-wrap a {
   text-decoration: none;
   background: #ffcc8d;
   padding: 0.5rem 1rem;
@@ -220,8 +220,8 @@
   font-weight: 500;
 }
 
-.filter-wrap button.active-tab,
-.filter-wrap button:hover {
+.filter-wrap a.active-tab,
+.filter-wrap a:hover {
   background: black;
   color: #ffcc8d;
   font-weight: 500;

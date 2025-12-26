@@ -2,7 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 
 export default function Vans(props) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type");
+  const typeFilter = searchParams.get("type")
   console.log(typeFilter);
 
   let vansData = props.allData !== null ? props.allData.vans : null;
@@ -39,13 +39,13 @@ export default function Vans(props) {
         })
       : null;
 
-  function setFilter(string) {
-    setSearchParams({ type: string });
-  }
+  // function setFilter(string) {
+  //   setSearchParams({ type: string });
+  // }
 
-  function clearFilter() {
-    setSearchParams("type");
-  }
+  // function clearFilter() {
+  //   setSearchParams("type");
+  // }
 
   return (
     <section className="van-section">
@@ -56,12 +56,16 @@ export default function Vans(props) {
             <div className="filter-wrap">
               {Array.from(new Set(vansData.map((van) => van.type))).map(
                 (dt) => (
-                  <button key={dt} onClick={() => setFilter(dt)}>
+                  // <button key={dt} onClick={() => setFilter(dt)}>
+                  //   {dt}
+                  // </button>
+                  <Link key={dt} to={`?type=${dt}`}>
                     {dt}
-                  </button>
+                  </Link>
                 )
               )}
-              <button onClick={clearFilter}>X</button>
+              {/* <button onClick={clearFilter}>X</button> */}
+              <Link to=".">X</Link>
             </div>
             <section className="vans-wrap">{vanCards}</section>
           </>
