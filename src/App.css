@@ -196,6 +196,38 @@
   gap: 1rem;
 }
 
+.vans-main-wrap {
+  margin: 2rem 0;
+}
+
+
+.filter-wrap {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-wrap button {
+  text-decoration: none;
+  background: #ffcc8d;
+  padding: 0.5rem 1rem;
+  color: black;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all 1s ease-in-out;
+  font-weight: 500;
+}
+
+.filter-wrap button.active-tab,
+.filter-wrap button:hover {
+  background: black;
+  color: #ffcc8d;
+  font-weight: 500;
+}
+
+
 @media screen and (min-width: 1080px) {
  .home-container {
 	min-height: 70vh;
