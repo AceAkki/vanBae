@@ -207,6 +207,7 @@
   flex-wrap: wrap;
 }
 
+.filter-wrap button,
 .filter-wrap a {
   text-decoration: none;
   background: #ffcc8d;
@@ -220,6 +221,7 @@
   font-weight: 500;
 }
 
+.filter-wrap button:hover,
 .filter-wrap a.active-tab,
 .filter-wrap a:hover {
   background: black;

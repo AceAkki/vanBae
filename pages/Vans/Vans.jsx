@@ -39,13 +39,13 @@ export default function Vans(props) {
         })
       : null;
 
-  // function setFilter(string) {
-  //   setSearchParams({ type: string });
-  // }
+  function setFilter(string) {
+    setSearchParams({ type: string });
+  }
 
-  // function clearFilter() {
-  //   setSearchParams("type");
-  // }
+  function clearFilter() {
+    setSearchParams({});
+  }
 
   return (
     <section className="van-section">
@@ -56,16 +56,16 @@ export default function Vans(props) {
             <div className="filter-wrap">
               {Array.from(new Set(vansData.map((van) => van.type))).map(
                 (dt) => (
-                  // <button key={dt} onClick={() => setFilter(dt)}>
-                  //   {dt}
-                  // </button>
-                  <Link key={dt} to={`?type=${dt}`}>
+                  <button key={dt} onClick={() => setFilter(dt)}>
                     {dt}
-                  </Link>
+                  </button>
+                  // <Link key={dt} to={`?type=${dt}`}>
+                  //   {dt}
+                  // </Link>
                 )
               )}
-              {/* <button onClick={clearFilter}>X</button> */}
-              <Link to=".">X</Link>
+              <button onClick={clearFilter}>X</button>
+              {/* <Link to=".">X</Link> */}
             </div>
             <section className="vans-wrap">{vanCards}</section>
           </>
