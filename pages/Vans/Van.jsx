@@ -19,7 +19,7 @@ export default function Van() {
      {
       vanData !== null ?
         (
-          <main className="van-info-section">
+          <section className="van-info-section">
             <div>
               <img src={vanData.imageUrl} alt="" />
             </div>
@@ -35,7 +35,7 @@ export default function Van() {
                 {vanData.description}
               </p>
             </div>
-          </main>
+          </section>
         )
         : null
      }
