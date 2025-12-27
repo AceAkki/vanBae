@@ -63,7 +63,12 @@ export default function Vans(props) {
                   // </Link>
                 )
               )}
-              <button onClick={() => setFilter("type", null)}>X</button>
+              {
+                typeFilter !== null ?
+                <button onClick={() => setFilter("type", null)}>X</button>
+                : null
+
+              }
               {/* <Link to=".">X</Link> */}
             </div>
             <section className="vans-wrap">{vanCards}</section>
