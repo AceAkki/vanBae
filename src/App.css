@@ -245,6 +245,12 @@
   color: #fff;
 }
 
+.van-dtl-back {
+  color: #000;
+  font-size: 1.2rem;
+  margin: 2rem;
+}
+
 @media screen and (min-width: 1080px) {
  .home-container {
 	min-height: 70vh;

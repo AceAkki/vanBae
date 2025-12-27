@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export default function Van() {
   let [vanData, setVanData] = useState(null);
   const currentParam = useParams();
@@ -19,6 +19,11 @@ export default function Van() {
      {
       vanData !== null ?
         (
+          <section>
+
+          <Link to="../vans" className="van-dtl-back">
+            &larr; Back to all Vans
+          </Link>
           <section className="van-info-section">
             <div>
               <img src={vanData.imageUrl} alt="" />
@@ -35,6 +40,7 @@ export default function Van() {
                 {vanData.description}
               </p>
             </div>
+          </section>
           </section>
         )
         : null

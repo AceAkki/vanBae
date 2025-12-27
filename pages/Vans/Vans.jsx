@@ -20,7 +20,7 @@ export default function Vans(props) {
               }
               key={van.id}
             >
-              <Link to={`/vans/${van.id}`}>
+              <Link to={`${van.id}`}>
                 <div className="van-img">
                   <img src={van.imageUrl} alt="" />
                 </div>
