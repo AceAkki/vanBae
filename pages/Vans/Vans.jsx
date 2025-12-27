@@ -55,7 +55,10 @@ export default function Vans(props) {
             <div className="filter-wrap">
               {Array.from(new Set(vansData.map((van) => van.type))).map(
                 (dt) => (
-                  <button key={dt} onClick={() => setFilter("type", dt)}>
+                  <button 
+                    key={dt} 
+                    className={typeFilter === dt ? dt : null}
+                    onClick={() => setFilter("type", dt)}>
                     {dt}
                   </button>
                   // <Link key={dt} to={`?type=${dt}`}>
