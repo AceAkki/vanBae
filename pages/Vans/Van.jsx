@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 export default function Van() {
   let [vanData, setVanData] = useState(null);
   const currentParam = useParams();
+  const location = useLocation();
+  console.log( currentParam, location)
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +23,7 @@ export default function Van() {
         (
           <section>
 
-          <Link to="../vans" className="van-dtl-back">
+          <Link to={location.state ? `..${location.state.search}` : ".."} relative="path" className="van-dtl-back">
             &larr; Back to all Vans
           </Link>
           <section className="van-info-section">
