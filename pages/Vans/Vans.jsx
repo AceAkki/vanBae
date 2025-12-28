@@ -1,14 +1,35 @@
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-export default function Vans(props) {
+export default function Vans() {
+  let [vansData, setVansData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type")
-  console.log(typeFilter);
+  const typeFilter = searchParams.get("type");
 
-  let vansData = props.allData !== null ? props.allData.vans : null;
-  let vanCards =
-    vansData !== null
-      ? vansData.map((van) => {
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/vans");
+        if(!res.ok) { throw { message:"Failed to fetch vans!", statusText: res.statusText, status:res.status}}
+        const data = await data.json();
+        setVansData(res);
+        
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+ 
+  function VanCards () {
+    return vansData.vans.map((van) => {
           return (
             <div
               className={
@@ -37,8 +58,8 @@ export default function Vans(props) {
             </div>
           );
         })
-      : null;
-
+  }
+   
   function setFilter(key, value) {
     setSearchParams(oldParam => {
       value === null ? oldParam.delete(key) : oldParam.set(key, value)
@@ -46,14 +67,18 @@ export default function Vans(props) {
     });
   }
 
+ 
+
   return (
     <section className="van-section">
       <h2 className="section-title">Explore our Van Options</h2>
       <div className="vans-main-wrap">
+        { (loading) ? <h1>Loading...</h1> : null}
+        { (error) ? <h2 style={{color:"red"}}>{error.message}</h2> : null}
         {vansData !== null ? (
           <>
             <div className="filter-wrap">
-              {Array.from(new Set(vansData.map((van) => van.type))).map(
+              {Array.from(new Set(vansData.vans.map((van) => van.type))).map(
                 (dt) => (
                   <button 
                     key={dt} 
@@ -74,7 +99,7 @@ export default function Vans(props) {
               }
               {/* <Link to=".">X</Link> */}
             </div>
-            <section className="vans-wrap">{vanCards}</section>
+            <section className="vans-wrap">{<VanCards />}</section>
           </>
         ) : null}
       </div>

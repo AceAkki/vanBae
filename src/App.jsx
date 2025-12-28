@@ -25,17 +25,6 @@ import NotFound from "../pages/404.jsx";
 import "./server.js";
 
 function App() {
-  let [vansData, setVansData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetch("/api/vans");
-      const res = await data.json();
-      setVansData(res);
-    }
-    fetchData();
-  }, []);
-
   return (
     <>
       <BrowserRouter>
@@ -53,7 +42,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
 
-            <Route path="vans" element={<Vans allData={vansData} />} />
+            <Route path="vans" element={<Vans />} />
             <Route path="vans/:id" element={<Van />} />
 
             {/* no shared element so no needed to wrap it
