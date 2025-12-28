@@ -16,6 +16,11 @@ export default function Van() {
     fetchData();
   }, [currentParam.id]);
 
+  function linkState() {
+    return location.state ? `..${location.state.search}` : ".."
+  }
+
+  const type = location.state?.type || ""
   return (
     <>
      {
@@ -23,8 +28,9 @@ export default function Van() {
         (
           <section>
 
-          <Link to={location.state ? `..${location.state.search}` : ".."} relative="path" className="van-dtl-back">
-            &larr; Back to all Vans
+          <Link to={linkState()} relative="path" className="van-dtl-back">
+            &larr; Back to all 
+             {` ${type} Vans`}
           </Link>
           <section className="van-info-section">
             <div>
