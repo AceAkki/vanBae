@@ -14,6 +14,7 @@ export default function Header () {
             <NavLink className={({isActive})=> highlightActive(isActive)} to="/about">About</NavLink>
             <NavLink className={({isActive})=> highlightActive(isActive)} to="/vans">Vans</NavLink>
             <NavLink className={({isActive})=> highlightActive(isActive)} to="/host">Host</NavLink>
+            <NavLink className={({isActive})=> highlightActive(isActive)} to="/login">User</NavLink>
           </nav>
         </header>
     )

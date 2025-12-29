@@ -16,6 +16,8 @@ import Layout from "../components/Layout.jsx";
 import Error from "../components/Error.jsx"
 import Home from "../pages/Home.jsx";
 import About from "../pages/About.jsx";
+import Login from "../pages/Login.jsx";
+
 import Vans, {loader as vansLoader} from "../pages/Vans/Vans.jsx";
 import Van from "../pages/Vans/Van.jsx";
 
@@ -61,6 +63,7 @@ const router = createBrowserRouter(
         <Route path="reviews" element={<Reviews />} />
       </Route>
 
+      <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
