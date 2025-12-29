@@ -13,6 +13,7 @@ import "./App.css";
 import "./Host.css";
 
 import Layout from "../components/Layout.jsx";
+import Error from "../components/Error.jsx"
 import Home from "../pages/Home.jsx";
 import About from "../pages/About.jsx";
 import Vans, {loader as vansLoader} from "../pages/Vans/Vans.jsx";
@@ -38,7 +39,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
 
-      <Route path="vans" element={<Vans/>} loader={vansLoader}/>
+      <Route path="vans" element={<Vans/>} errorElement={<Error />} loader={vansLoader}/>
       <Route path="vans/:id" element={<Van />} />
 
       {/* no shared element so no needed to wrap it

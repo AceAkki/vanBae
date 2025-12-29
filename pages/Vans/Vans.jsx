@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 
-export function loader() {
+export function loader() {  
   async function fetchData() {
     const res = await fetch("/api/vans");
     if(!res.ok) { throw { message:"Failed to fetch vans!", statusText: res.statusText, status:res.status}}
