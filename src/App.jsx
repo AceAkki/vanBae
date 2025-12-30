@@ -50,18 +50,22 @@ const router = createBrowserRouter(
              <Route path=":id" element={<Van />} />
              </Route> */}
 
-      <Route path="host" element={<HostLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="income" element={<Income />} />
-        <Route path="vans" element={<HostVans />} />
-        <Route path="vans/:id" element={<HostVansDetail />}>
-          <Route index element={<Details />} />
-          <Route path="price" element={<Price />} />
-          <Route path="photos" element={<Photos />} />
+      <Route>
+        <Route path="host" element={<HostLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="income" element={<Income />} />
+          <Route path="vans" element={<HostVans />} />
+          <Route path="vans/:id" element={<HostVansDetail />}>
+            <Route index element={<Details />} />
+            <Route path="price" element={<Price />} />
+            <Route path="photos" element={<Photos />} />
+          </Route>
+
+          <Route path="reviews" element={<Reviews />} />
         </Route>
 
-        <Route path="reviews" element={<Reviews />} />
       </Route>
+
 
       <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
