@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
-export default function Van() {
-  let [vanData, setVanData] = useState(null);
-  const currentParam = useParams();
-  const location = useLocation();
-  console.log( currentParam, location)
+import { Link, useParams, useLocation, useLoaderData } from "react-router-dom";
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetch(`/api/vans/${currentParam.id}`);
+export function loader ({params}) {
+   async function fetchData() {
+      const data = await fetch(`/api/vans/${params.id}`);
       const res = await data.json();
-      setVanData(res.vans);
+      // setVanData(res.vans);
       //console.log(res.vans)
+      return res.vans;
     }
-    fetchData();
-  }, [currentParam.id]);
+    return fetchData();
+}
+
+export default function Van() {
+  // let [vanData, setVanData] = useState(null);
+  let vanData = useLoaderData();
+  // const currentParam = useParams();
+  const location = useLocation();
+  // console.log( currentParam, location)
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const data = await fetch(`/api/vans/${currentParam.id}`);
+  //     const res = await data.json();
+  //     setVanData(res.vans);
+  //     //console.log(res.vans)
+  //   }
+  //   fetchData();
+  // }, [currentParam.id]);
 
   function linkState() {
     return location.state ? `..${location.state.search}` : ".."

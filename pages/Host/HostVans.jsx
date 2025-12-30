@@ -1,14 +1,20 @@
-import {Link} from "react-router-dom"
+import {Link, useLoaderData} from "react-router-dom"
 import {useState, useEffect} from 'react'
 
-export default function Vans(){
-    let [hostVans, setHostVans] = useState(null)
-
-    async function fetchHostData(){
+export function loader () {
+     async function fetchHostData(){
         const data = await fetch("/api/host/vans");
         const res = await data.json();
-        setHostVans(res.vans);
+        // setHostVans(res.vans);
+        return res.vans;
     }
+    return fetchHostData();
+}
+
+export default function Vans(){
+    // let [hostVans, setHostVans] = useState(null)
+    let hostVans = useLoaderData();
+   
 
     function RenderVans() {
         return hostVans.map(van => (
@@ -30,11 +36,11 @@ export default function Vans(){
                     ))
     }
 
-    useEffect(()=> {
-        fetchHostData()
-    }, [])
+    // useEffect(()=> {
+    //     fetchHostData()
+    // }, [])
 
-    console.log(hostVans)
+    // console.log(hostVans)
     return (
         <section className="host-van-section">
             <h1 className="section-title">

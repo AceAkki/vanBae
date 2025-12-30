@@ -1,15 +1,21 @@
 import {useState, useEffect} from 'react'
-import {Link, NavLink, Outlet, useParams} from "react-router-dom"
+import {Link, NavLink, Outlet, useLoaderData, useParams} from "react-router-dom"
+
+export function loader ({params}) {
+     async function fetchHostData(){
+        const data = await fetch(`/api/host/vans/${params.id}`);
+        const res = await data.json();
+        // setVanDt(res.vans);
+        return res.vans
+    }
+    return fetchHostData()
+}
 
 export default function HostVansDetail(){
-    let [vanDt, setVanDt] = useState(null);
-    const {id} = useParams();
-
-     async function fetchHostData(id){
-        const data = await fetch(`/api/host/vans/${id}`);
-        const res = await data.json();
-        setVanDt(res.vans);
-    }
+    //let [vanDt, setVanDt] = useState(null);
+    // const {id} = useParams();
+    let vanDt = useLoaderData();
+    console.log(vanDt)
 
     function RenderVanData (props) {
         let data = props.data;
@@ -47,9 +53,9 @@ export default function HostVansDetail(){
     }
 
 
-    useEffect(()=> {
-       fetchHostData(id)
-    }, [id])
+    // useEffect(()=> {
+    //    fetchHostData(id)
+    // }, [id])
     
     return (
         <section className="van-dtl-section">

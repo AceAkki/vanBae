@@ -18,14 +18,15 @@ import Home from "../pages/Home.jsx";
 import About from "../pages/About.jsx";
 import Login from "../pages/Login.jsx";
 
-import Vans, {loader as vansLoader} from "../pages/Vans/Vans.jsx";
-import Van from "../pages/Vans/Van.jsx";
+import Vans, {loader, loader as vansLoader} from "../pages/Vans/Vans.jsx";
+import Van, {loader as vanLoader } from "../pages/Vans/Van.jsx";
 
 import HostLayout from "../components/HostLayout.jsx";
 import Dashboard from "../pages/Host/Dashboard.jsx";
 import Income from "../pages/Host/Income.jsx";
-import HostVans from "../pages/Host/HostVans.jsx";
-import HostVansDetail from "../pages/Host/HostVansDetail.jsx";
+
+import HostVans, {loader as hostVansLoader} from "../pages/Host/HostVans.jsx";
+import HostVansDetail, {loader as hostVanLoader} from "../pages/Host/HostVansDetail.jsx";
 import Details from "../pages/Host/HostVan/Details.jsx";
 import Price from "../pages/Host/HostVan/Price";
 import Photos from "../pages/Host/HostVan/Photos";
@@ -42,7 +43,7 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
 
       <Route path="vans" element={<Vans/>} errorElement={<Error />} loader={vansLoader}/>
-      <Route path="vans/:id" element={<Van />} />
+      <Route path="vans/:id" element={<Van />} loader={vanLoader} />
 
       {/* no shared element so no needed to wrap it
              <Route path="vans">
@@ -54,8 +55,8 @@ const router = createBrowserRouter(
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="income" element={<Income />} />
-          <Route path="vans" element={<HostVans />} />
-          <Route path="vans/:id" element={<HostVansDetail />}>
+          <Route path="vans" element={<HostVans />} loader={hostVansLoader}/>
+          <Route path="vans/:id" element={<HostVansDetail />} loader={hostVanLoader}>
             <Route index element={<Details />} />
             <Route path="price" element={<Price />} />
             <Route path="photos" element={<Photos />} />
