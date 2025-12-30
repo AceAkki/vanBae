@@ -15,7 +15,7 @@ export default function HostVansDetail(){
     //let [vanDt, setVanDt] = useState(null);
     // const {id} = useParams();
     let vanDt = useLoaderData();
-    console.log(vanDt)
+    // console.log(vanDt)
 
     function RenderVanData (props) {
         let data = props.data;
@@ -70,10 +70,12 @@ export default function HostVansDetail(){
                 &larr; Back to All Vans
             </Link>
 
-            {
+            <RenderVanData data={vanDt} />
+
+            {/* {
                 vanDt !== null ? <RenderVanData data={vanDt} /> : null
 
-            }
+            } */}
 
 
         </section>
