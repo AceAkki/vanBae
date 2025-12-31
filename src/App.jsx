@@ -35,6 +35,7 @@ import Reviews from "../pages/Host/Reviews.jsx";
 import NotFound from "../pages/404.jsx";
 
 import "./server.js";
+import {requireAuth} from "./utils.js"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
