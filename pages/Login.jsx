@@ -1,19 +1,45 @@
 import {useState} from 'react'
-import {useSearchParams, useLoaderData } from "react-router-dom"
+import {useSearchParams, useLoaderData, useNavigate } from "react-router-dom"
 
 export function loader({request}){
     return new URL(request.url).searchParams.get("message");
 }
 
+ async function loginUser(creds) {
+    const res = await fetch("/api/login",
+        { method: "post", body: JSON.stringify(creds) }
+    )
+    const data = await res.json()
+
+    if (!res.ok) {
+        throw {
+            message: data.message,
+            statusText: res.statusText,
+            status: res.status
+        }
+    }
+
+    return data
+}
+
 export default function Login() {
     const [loginFormData, setLoginFormData] = useState({ email: "", password: "" })
+    const [status, setStatus] = useState("idle");
+    const [error, setError] = useState(null)
     //const [searchParams, setSearchParams] = useSearchParams();
     //let redirectMsg = searchParams.get('message')
     let redirectMsg = useLoaderData();
+    const navigate = useNavigate();
+    
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(loginFormData)
+        setStatus("submitting");
+        setError(null);
+        loginUser(loginFormData)
+            .then(data => navigate("/host", {replace:true}))
+            .catch(err => setError(err))
+            .finally(()=> setStatus("idle"))
     }
 
     function handleChange(e) {
@@ -44,8 +70,9 @@ export default function Login() {
                     placeholder="Password"
                     value={loginFormData.password}
                 />
-                <button>Log in</button>
+                <button disabled={status === "submitting"}>{status !== "idle" ? "logging in ..." :  "Log in"}</button>
             </form>
+            {error && <h3 style={{color:"red"}}>{error.message}</h3>}
         </section>
     )
 
