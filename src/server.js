@@ -17,6 +17,7 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
       type: "simple",
       hostId: "123",
+      hostId: "124",
     });
     server.create("van", {
       id: "2",
@@ -28,6 +29,7 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png",
       type: "rugged",
       hostId: "126",
+      hostId: "124",
     });
     server.create("van", {
       id: "3",
@@ -39,6 +41,7 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/reliable-red.png",
       type: "luxury",
       hostId: "126",
+      hostId: "124",
     });
     server.create("van", {
       id: "4",
@@ -61,6 +64,7 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/the-cruiser.png",
       type: "luxury",
       hostId: "125",
+      hostId: "124",
     });
     server.create("van", {
       id: "6",
@@ -72,11 +76,30 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
       type: "rugged",
       hostId: "123",
+      hostId: "124",
     });
     server.create("user", {
       id: "123",
-      email: "b@b.com",
+      email: "mail3@m.com",
       password: "p123",
+      name: "Bob",
+    });
+    server.create("user", {
+      id: "124",
+      email: "mail4@m.com",
+      password: "p124",
+      name: "Bob",
+    });
+    server.create("user", {
+      id: "125",
+      email: "mail5@m.com",
+      password: "p125",
+      name: "Bob",
+    });
+    server.create("user", {
+      id: "126",
+      email: "mail6@m.com",
+      password: "p126",
       name: "Bob",
     });
   },
@@ -96,15 +119,16 @@ createServer({
       return schema.vans.find(id);
     });
 
-    this.get("/host/vans", (schema, request) => {
-      // Hard-code the hostId for now
-      return schema.vans.where({ hostId: "123" });
+    this.post("/host/vans", (schema, request) => {
+      const attrs = JSON.parse(request.requestBody);
+      return schema.vans.where({ hostId: attrs.id });
     });
 
-    this.get("/host/vans/:id", (schema, request) => {
-      // Hard-code the hostId for now
+    this.post("/host/vans/:id", (schema, request) => {  
       const id = request.params.id;
-      return schema.vans.findBy({ id, hostId: "123" });
+      const attrs = JSON.parse(request.requestBody);
+          // we get attrs.id as that's what's defined while fetching
+      return schema.vans.findBy({ id, hostId: attrs.id });
     });
 
     this.post("/login", (schema, request) => {

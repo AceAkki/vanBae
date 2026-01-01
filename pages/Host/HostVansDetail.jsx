@@ -3,7 +3,11 @@ import {Link, NavLink, Outlet, useLoaderData, useParams} from "react-router-dom"
 
 export function loader ({params}) {
      async function fetchHostData(){
-        const data = await fetch(`/api/host/vans/${params.id}`);
+        const data = await fetch(`/api/host/vans/${params.id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id:  JSON.parse(localStorage.getItem("user")).userid })
+        });
         const res = await data.json();
         // setVanDt(res.vans);
         return res.vans

@@ -3,7 +3,11 @@ import {useState, useEffect} from 'react'
 
 export function loader () {
      async function fetchHostData(){
-        const data = await fetch("/api/host/vans");
+        const data = await fetch("/api/host/vans", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id:  JSON.parse(localStorage.getItem("user")).userid })
+        });
         const res = await data.json();
         // setHostVans(res.vans);
         return res.vans;
@@ -48,9 +52,11 @@ export default function Vans(){
             </h1>
 
             <div className="host-vans-wrap">
-                {
+                {/* { 
+                    // no needed to add error boundary since loader now handles it by fetching data before
                     hostVans !== null ? <RenderVans /> : null
-                }
+                } */}
+                <RenderVans />
             </div>
 
         </section>

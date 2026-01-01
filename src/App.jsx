@@ -14,7 +14,7 @@ import Layout from "../components/Layout.jsx";
 import Error from "../components/Error.jsx";
 import Home from "../pages/Home.jsx";
 import About from "../pages/About.jsx";
-import Login, {loader as loginLoader} from "../pages/Login.jsx";
+import Login, {loader as loginLoader, action as loginAction} from "../pages/Login.jsx";
 
 import Vans, { loader as vansLoader } from "../pages/Vans/Vans.jsx";
 import Van, { loader as vanLoader } from "../pages/Vans/Van.jsx";
@@ -91,7 +91,13 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route path="login" element={<Login />} loader={loginLoader}/>
+      <Route 
+        path="login" 
+        element={<Login />} 
+        loader={loginLoader}
+        action={loginAction}
+        errorElement={<Login />}
+      />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
