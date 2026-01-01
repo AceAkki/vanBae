@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {useSearchParams, useLoaderData } from "react-router-dom"
 
 export function loader({request}){
@@ -5,7 +6,7 @@ export function loader({request}){
 }
 
 export default function Login() {
-    const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
+    const [loginFormData, setLoginFormData] = useState({ email: "", password: "" })
     //const [searchParams, setSearchParams] = useSearchParams();
     //let redirectMsg = searchParams.get('message')
     let redirectMsg = useLoaderData();
