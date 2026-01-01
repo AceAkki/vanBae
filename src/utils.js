@@ -2,8 +2,8 @@ import { redirect } from "react-router-dom";
 
 export function requireAuth() {
   console.log("Checking if loader is called");
-  const isLoggedIn = false; // Simulated login status
-  const response = redirect("/login")
+  const isLoggedIn = false; 
+  const response = redirect("/login?message=Login First")
   if (!isLoggedIn) {
     console.log("Redirecting to /login");
     // does not work due to conflicting with miragejs

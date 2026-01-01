@@ -1,8 +1,10 @@
 import React from "react"
-import { redirect } from "react-router-dom"
+import { redirect, useSearchParams } from "react-router-dom"
 
 export default function Login() {
     const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
+    const [searchParams, setSearchParams] = useSearchParams();
+    let redirectMsg = searchParams.get('message')
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -16,9 +18,11 @@ export default function Login() {
             [name]: value
         }))
     }
+    
 
     return (
         <section className="login-container">
+            <h2 style={{color:"red"}}>{redirectMsg}</h2>
             <h1>Sign in to your account</h1>
             <form onSubmit={handleSubmit} className="login-form">
                 <input
