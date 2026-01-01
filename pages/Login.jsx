@@ -5,6 +5,7 @@ import {
   useNavigate,
   Form,
   useRouteError,
+  redirect,
 } from "react-router-dom";
 
 // -------------------------------------------
@@ -93,12 +94,16 @@ export async function action({ request }) {
   const { email, password } = Object.fromEntries(formData.entries());
   const data = await loginUser({ email, password });
   localStorage.setItem("user", JSON.stringify({ userid: data.user.id, email: data.user.email, name:data.user.name }));
+  let response = redirect("/host");
+  return Object.defineProperty(response, 'body', {value:true});
 }
 
 export default function Login() {
   let [userData, setUserData] = useState(null);
   let redirectMsg = useLoaderData();
   let err = useRouteError();
+
+
 
   if (localStorage.getItem("user") && userData === null) {
     setUserData(JSON.parse(localStorage.getItem("user")));
