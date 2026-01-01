@@ -1,10 +1,14 @@
-import React from "react"
-import { redirect, useSearchParams } from "react-router-dom"
+import {useSearchParams, useLoaderData } from "react-router-dom"
+
+export function loader({request}){
+    return new URL(request.url).searchParams.get("message");
+}
 
 export default function Login() {
     const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
-    const [searchParams, setSearchParams] = useSearchParams();
-    let redirectMsg = searchParams.get('message')
+    //const [searchParams, setSearchParams] = useSearchParams();
+    //let redirectMsg = searchParams.get('message')
+    let redirectMsg = useLoaderData();
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -22,7 +26,7 @@ export default function Login() {
 
     return (
         <section className="login-container">
-            <h2 style={{color:"red"}}>{redirectMsg}</h2>
+            {redirectMsg && <h2 style={{color:"red"}}>{redirectMsg}</h2>}
             <h1>Sign in to your account</h1>
             <form onSubmit={handleSubmit} className="login-form">
                 <input
