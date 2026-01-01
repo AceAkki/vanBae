@@ -1,4 +1,4 @@
-import {Link, useLoaderData} from "react-router-dom"
+import {Link, redirect, useLoaderData} from "react-router-dom"
 import {useState, useEffect} from 'react'
 
 export function loader () {
