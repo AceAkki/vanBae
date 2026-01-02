@@ -93,7 +93,7 @@ async function loginUser(creds) {
 }
 
 export async function action({ request }) {
-  let redirectParam = new URL(request.url).searchParams.get("redirectTo");
+  let redirectParam = new URL(request.url).searchParams.get("redirectTo")
   let redirectPath = redirectParam ? redirectParam : "/host";
   try {
     const formData = await request.formData();
