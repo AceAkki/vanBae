@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import {
   useSearchParams,
   useLoaderData,
+  useActionData,
   useNavigate,
+  useNavigation,
   Form,
   useRouteError,
   redirect,
@@ -90,20 +92,26 @@ async function loginUser(creds) {
 }
 
 export async function action({ request }) {
-  const formData = await request.formData();
-  const { email, password } = Object.fromEntries(formData.entries());
-  const data = await loginUser({ email, password });
-  localStorage.setItem("user", JSON.stringify({ userid: data.user.id, email: data.user.email, name:data.user.name }));
-  let response = redirect("/host");
-  return Object.defineProperty(response, 'body', {value:true});
+  try {
+    const formData = await request.formData();
+    const { email, password } = Object.fromEntries(formData.entries());
+    const data = await loginUser({ email, password });
+    localStorage.setItem("user", JSON.stringify({ userid: data.user.id, email: data.user.email, name:data.user.name }));
+    let response = redirect("/host");
+    return Object.defineProperty(response, 'body', {value:true});
+  } catch (error) {
+    return error
+  }
 }
 
 export default function Login() {
   let [userData, setUserData] = useState(null);
   let redirectMsg = useLoaderData();
-  let err = useRouteError();
-
-
+  // using the Error Element method and using the same page for Error element then using useRouteError
+  // let err = useRouteError();
+  let err = useActionData();
+  let navigationState = useNavigation();
+  console.log(navigationState)
 
   if (localStorage.getItem("user") && userData === null) {
     setUserData(JSON.parse(localStorage.getItem("user")));
@@ -124,12 +132,16 @@ export default function Login() {
         <section className="login-container">
           {redirectMsg && <h2 style={{ color: "red" }}>{redirectMsg}</h2>}
           <h1>Sign in to your account</h1>
-          <Form className="login-form" method="post">
+          <Form 
+              className="login-form" 
+              method="post"
+              replace
+              >
             <input name="email" type="email" placeholder="Email address" />
             <input name="password" type="password" placeholder="Password" />
-            <button>Log in</button>
+            <button disabled={navigationState.state !== "idle"}>{navigationState.state !== "idle" ? "Logging In.." : "Log in"}</button>
           </Form>
-          <h3>{err && err.message}</h3>
+          <h3 style={{ color: "red" }}>{err && err.message}</h3>
         </section>
       ) : (
         <section>
