@@ -70,6 +70,7 @@ import {
 //---------------------------------------------
 
 export function loader({ request }) {
+  console.log(request)
   return new URL(request.url).searchParams.get("message");
 }
 
@@ -92,12 +93,14 @@ async function loginUser(creds) {
 }
 
 export async function action({ request }) {
+  let redirectParam = new URL(request.url).searchParams.get("redirectTo");
+  let redirectPath = redirectParam ? redirectParam : "/host";
   try {
     const formData = await request.formData();
     const { email, password } = Object.fromEntries(formData.entries());
     const data = await loginUser({ email, password });
     localStorage.setItem("user", JSON.stringify({ userid: data.user.id, email: data.user.email, name:data.user.name }));
-    let response = redirect("/host");
+    let response = redirect(redirectPath);
     return Object.defineProperty(response, 'body', {value:true});
   } catch (error) {
     return error
@@ -111,7 +114,7 @@ export default function Login() {
   // let err = useRouteError();
   let err = useActionData();
   let navigationState = useNavigation();
-  console.log(navigationState)
+  // console.log(navigationState)
 
   if (localStorage.getItem("user") && userData === null) {
     setUserData(JSON.parse(localStorage.getItem("user")));
@@ -139,7 +142,7 @@ export default function Login() {
               >
             <input name="email" type="email" placeholder="Email address" />
             <input name="password" type="password" placeholder="Password" />
-            <button disabled={navigationState.state !== "idle"}>{navigationState.state !== "idle" ? "Logging In.." : "Log in"}</button>
+            <button disabled={navigationState.state === "submitting"}>{navigationState.state === "submitting" ? "Logging In.." : "Log in"}</button>
           </Form>
           <h3 style={{ color: "red" }}>{err && err.message}</h3>
         </section>
