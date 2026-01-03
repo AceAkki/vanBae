@@ -18,8 +18,8 @@ export function loader() {
 }
 export default function Vans() {
   // let [vansData, setVansData] = useState();
-  // const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false); 
+  // const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   const {vansData} = useLoaderData();
@@ -89,7 +89,8 @@ export default function Vans() {
       <h2 className="section-title">Explore our Van Options</h2>
       <div className="vans-main-wrap">
         {/* {loading ? <h1>Loading...</h1> : null} */}
-        {error ? <h2 style={{ color: "red" }}>{error.message}</h2> : null}
+
+        {/* {error ? <h2 style={{ color: "red" }}>{error.message}</h2> : null} */}
 
 
         {/* without loader had to keep the following as failsafe */}
