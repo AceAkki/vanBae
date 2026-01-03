@@ -42,7 +42,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />} >
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-
+                                        {/* if error occurs it will be displayed on the errorElement */}
       <Route path="vans" element={<Vans/>} errorElement={<Error />} loader={vansLoader}/>
       <Route path="vans/:id" element={<Van />} loader={vanLoader} />
 
