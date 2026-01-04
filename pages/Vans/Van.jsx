@@ -1,6 +1,6 @@
 import { useEffect, useState, Suspense } from "react";
 import { Link, useParams, useLocation, useLoaderData, Await } from "react-router-dom";
-import { fetchVansData } from "../../src/utils";
+import { fetchVanData } from "../../src/utils";
 
 export function loader({ params }) {
   // async function fetchData() {
@@ -10,7 +10,7 @@ export function loader({ params }) {
   //   //console.log(res.vans)
   //   return res.vans;
   // }
-  return {mainVanData : fetchVansData(params.id)};
+  return {mainVanData : fetchVanData(params.id)};
 }
 
 export default function Van() {
@@ -50,13 +50,13 @@ export default function Van() {
                     
                   <section className="van-info-section">
                   <div>
-                    <img src={vanData.vans.imageUrl} alt="" />
+                    <img src={vanData.imageUrl} alt="" />
                   </div>
                   <div className="van-details-wrap">
-                    <p className={`type-label ${vanData.vans.type}`}>{vanData.vans.type}</p>
-                    <h1>{vanData.vans.name}</h1>
-                    <h2>{`$${vanData.vans.price}`}</h2>
-                    <p>{vanData.vans.description}</p>
+                    <p className={`type-label ${vanData.type}`}>{vanData.type}</p>
+                    <h1>{vanData.name}</h1>
+                    <h2>{`$${vanData.price}`}</h2>
+                    <p>{vanData.description}</p>
                   </div>
                 </section>
                   )

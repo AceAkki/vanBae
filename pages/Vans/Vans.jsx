@@ -88,11 +88,11 @@ export default function Vans() {
         <Suspense fallback={<h1>loading...</h1>}>
           <Await resolve={vansData}>
             {(value) => {
-                {console.log(value.vans)}
+                {console.log(value)}
               return <>
                 <div className="filter-wrap">
                   {Array.from(
-                    new Set(value.vans.map((van) => van.type))
+                    new Set(value.map((van) => van.type))
                   ).map((dt) => (
                     <button
                       key={dt}
@@ -110,7 +110,7 @@ export default function Vans() {
                   ) : null}
                   {/* <Link to=".">X</Link> */}
                 </div>
-                <section className="vans-wrap">{<VanCards data={value.vans} />}</section>
+                <section className="vans-wrap">{<VanCards data={value} />}</section>
               </>;
             }}
           </Await>

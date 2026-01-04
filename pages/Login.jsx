@@ -70,7 +70,7 @@ import {
 //---------------------------------------------
 
 export function loader({ request }) {
-  console.log(request)
+  // console.log(request)
   return new URL(request.url).searchParams.get("message");
 }
 
