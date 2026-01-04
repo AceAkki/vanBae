@@ -1,25 +1,14 @@
 import { useEffect, useState, Suspense } from "react";
 import { Link, useSearchParams, useLoaderData, Await } from "react-router-dom";
+import { fetchVansData } from "../../src/utils";
 
 export function loader() {
-  async function fetchData() {
-    const res = await fetch("/api/vans");
-    if (!res.ok) {
-      throw {
-        message: "Failed to fetch vans!",
-        statusText: res.statusText,
-        status: res.status,
-      };
-    }
-    const data = await res.json();
-    return data;
-  }
-  return { vansData: fetchData() };
+  return { vansData: fetchVansData() };
 }
 export default function Vans() {
   // let [vansData, setVansData] = useState();
   // const [loading, setLoading] = useState(false); 
-  // const [error, setError] = useState(null);
+  // const [error, setError] = useState(null); 
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   const {vansData} = useLoaderData();
@@ -99,7 +88,7 @@ export default function Vans() {
         <Suspense fallback={<h1>loading...</h1>}>
           <Await resolve={vansData}>
             {(value) => {
-          {console.log(value.vans)}
+                {console.log(value.vans)}
               return <>
                 <div className="filter-wrap">
                   {Array.from(
